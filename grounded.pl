@@ -20,7 +20,7 @@ selfdefendsset(As) :- forall(member(A,As), defendedby(A,As)).
 conflictfree(As) :- \+((member(X,As),member(Y,As),attacks(X,Y))).
 
 %complete extension
-complete(As) :- selfdefends(As), conflictfree(As).
+complete(As) :- selfdefendsset(As), conflictfree(As).
 
 % Empty set is grounded by definition (needed?), may not be complete?
 grounded([]). 
