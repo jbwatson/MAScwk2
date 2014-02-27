@@ -31,8 +31,8 @@ complete(As) :- selfdefendsset(As), conflictfree(As).
 grounded(A) :- grounded(A,[]).
 grounded(A, S) :- member(A, S); 
 		  findall(X, defendedby(X,S), S2),
-		  grounded(A,S2),
-		  S2 \== S.
+		  S2 \== S,
+		  grounded(A,S2).
 
 %examples
 argument(a).
