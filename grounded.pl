@@ -7,9 +7,11 @@ selfdefends(A) :- argument(A),
                forall( (argument(X), attacks(X,A)),
                        (attacks(Y, X), Y\==X, Y\==A, grounded(Y)) ).
 
+
 %given a list of arguments As, finds if it defends itelf
 defendedby(A,_) :- unattacked(A). 
-defendedby(A,D) :- attacks(X,A),
+defendedby(A,D) :- argument(X), argument(Y),
+		   attacks(X,A),
 		   member(Y,D),
 		   attacks(Y,X).
 
@@ -23,7 +25,14 @@ conflictfree(As) :- \+((member(X,As),member(Y,As),attacks(X,Y))).
 complete(As) :- selfdefendsset(As), conflictfree(As).
 
 % Empty set is grounded by definition (needed?), may not be complete?
-grounded([]). 
+%grounded([]). 
+
+% fixed point grounded
+grounded(A) :- grounded(A,[]).
+grounded(A, S) :- member(A, S); 
+		  findall(X, defendedby(X,S), S2),
+		  grounded(A,S2),
+		  S2 \== S.
 
 %examples
 argument(a).
