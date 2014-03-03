@@ -1,0 +1,85 @@
+*** Step 0
+P:    [1:([], [free6(b)] -> free6(b)) --> 0]
+O:    []
+D:    [free6(b)]
+C:    []
+Arg:  []
+Att:  []
+
+Case 1.(i)
+*** Step 1
+P:    []
+O:    [2:([], [not_free6(b)] -> not_free6(b)) --> 1]
+D:    [free6(b)]
+C:    []
+Arg:  [1:([free6(b)], [] -> free6(b))]
+Att:  [1-0]
+
+Case 2.(ii)
+*** Step 2
+P:    []
+O:    [3:([], [sports(b)] -> not_free6(b)) --> 1]
+D:    [free6(b)]
+C:    []
+Arg:  [1:([free6(b)], [] -> free6(b))]
+Att:  [1-0]
+
+Case 2.(ic)
+*** Step 3
+P:    [4:([], [not_sports(b)] -> not_sports(b)) --> 3]
+O:    []
+D:    [free6(b)]
+C:    [sports(b)]
+Arg:  [1:([free6(b)], [] -> free6(b)),
+       3:([sports(b)], [] -> not_free6(b))]
+Att:  [1-0,
+       3-1]
+
+Case 1.(ii)
+*** Step 4
+P:    [4:([], [overweight(b)] -> not_sports(b)) --> 3]
+O:    []
+D:    [free6(b),overweight(b)]
+C:    [sports(b)]
+Arg:  [1:([free6(b)], [] -> free6(b)),
+       3:([sports(b)], [] -> not_free6(b))]
+Att:  [1-0,
+       3-1]
+
+Case 1.(i)
+*** Step 5
+P:    []
+O:    [5:([], [not_overweight(b)] -> not_overweight(b)) --> 4]
+D:    [free6(b),overweight(b)]
+C:    [sports(b)]
+Arg:  [1:([free6(b)], [] -> free6(b)),
+       3:([sports(b)], [] -> not_free6(b)),
+       4:([overweight(b)], [] -> not_sports(b))]
+Att:  [1-0,
+       3-1,
+       4-3]
+
+Case 2.(ii)
+*** Step 6
+P:    []
+O:    []
+D:    [free6(b),overweight(b)]
+C:    [sports(b)]
+Arg:  [1:([free6(b)], [] -> free6(b)),
+       3:([sports(b)], [] -> not_free6(b)),
+       4:([overweight(b)], [] -> not_sports(b))]
+Att:  [1-0,
+       3-1,
+       4-3]
+
+** SOLUTION 1:
+
+DEF:  [free6(b),overweight(b)]
+CUL:  [sports(b)]
+ARG:  [1:([free6(b)], [] -> free6(b)),
+       3:([sports(b)], [] -> not_free6(b)),
+       4:([overweight(b)], [] -> not_sports(b))]
+ATT:  [1-0,
+       3-1,
+       4-3]
+X = [[free6(b),overweight(b)],[sports(b)],[[1,[free6(b)],[],free6(b)],[3,[sports(b)],[],not_free6(b)],[4,[overweight(b)],[],not_sports(b)]],[1-0,3-1,4-3]] ? ;

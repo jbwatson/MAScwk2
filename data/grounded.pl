@@ -33,11 +33,3 @@ grounded(A, S) :- member(A, S);
 		  findall(X, defendedby(X,S), S2),
 		  S2 \== S,
 		  grounded(A,S2).
-
-%examples
-argument(a).
-argument(b).
-argument(c).
-
-attacks(a,b).
-attacks(c,a).
